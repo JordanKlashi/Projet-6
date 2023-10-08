@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="assets/script.js" defer></script>
+	
 </head>
 <body>
 <header>
@@ -36,12 +36,18 @@
 		</article>
 	</section>
 	<section id="portfolio">
+		<button class="boutonEdition">Editer</button>
+		<div class="popupBackground">
+			<div class="popup">
+				<h3>Galerie photo</h3>
+				<div class="popup-galerie"></div>
+				<button class="buttonAddPhotos boutonEdition">Ajouter une photo</button>
+			</div>
+		</div>
 		<h2>Mes Projets</h2>
 		<div class="filtres">
 			<button id="tous" class="filtres-boutton">Tous</button>
-			<button class="filtres-boutton objets">Objets</button>
-			<button class="filtres-boutton appartements">Appartements</button>
-			<button class="filtres-boutton hotel-restaurants">Hôtels & Restaurants</button>
+			
 		</div>
 		<div class="gallery">
 			
@@ -70,4 +76,5 @@
 	</nav>
 </footer>
 </body>
+<script src="assets/script.js"></script>
 </html>
