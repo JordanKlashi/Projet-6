@@ -390,50 +390,70 @@ footer nav ul {
 .popupBackground {
     display: none;
     position: fixed;
-    height: 200vh;
-    width: 100vw;
-    background-color: rgba(255, 255, 255, 0.5);
+    height: 50vh;
+    width: 120vw;
+    
 }
-
 .popup {
+	display:none;
     position: absolute;
-    top: 10%;
+    top: -60%;
     left: 30%;
     transform: translate(-50%, -50%);
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
+    display:flex;
+	flex-direction: column;
+    width:800px;
     padding: 20px;
-    text-align: center;
-    color: white;
+    color:black;
     font-size: 17px;
-    font-weight: 500;
-    background-color: darkgrey;
+    background-color:#FFFEF8;
     border-radius: 30px;
     z-index: 1;
+	border: #1D6154 2px solid;
 }
-
+.popup-titre{
+	text-align: center;
+	margin-bottom:30px;
+}
 .active {
     display: flex !important;
 }
 
-.popup p {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.popup div {
-    font-size: 25px;
-    padding : 5px;
-    padding-bottom: 15px;
-}
-
 /* Eléments de formulaire */
-.popup input {
-    margin-bottom: 10px;
-}
 
-.popup button {
-    margin: 5px;
+.popup-galerie img{
+width:100px;
+position:relative;
+}
+.popup-galerie {
+	display:flex;
+	flex-wrap: wrap;
+	gap:30px;
+}
+.popup-galerie figure{
+	display:flex;
+}
+.buttonAddPhotos {
+	margin-top:30px;
+}
+.cross {
+	width:20px;
+}
+.boutton-effacer {
+	position:absolute;
+	background-color: #1D6154;
+	color:white;
+	border:#1D6154 1px solid;
+}
+.disabled {
+	display:none;
+}
+.popup form{
+	font-size:25px;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	
 }

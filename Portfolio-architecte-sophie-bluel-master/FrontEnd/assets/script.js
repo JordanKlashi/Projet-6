@@ -18,6 +18,7 @@ fetch(apiWorks)
     .then(data => {
         projets = data
         mesProjets()
+        modeEditionPhotos()
 
     })
     .catch(error => {
@@ -44,6 +45,8 @@ fetch(apiCategory)
         console.error("Une erreur s'est produite lors de la récupération des données", error);
 
     })
+
+// on génére l'API Delete
 
 
 // on génére les projets
@@ -113,28 +116,26 @@ boutonTous.addEventListener("click", function () {
 const introduction = document.getElementById("introduction")
 const portFolio = document.getElementById("portfolio")
 
-function createButtonEdit() {
-    const boutonEdition = document.createElement("button")
-    boutonEdition.innerText = "Edition";
-    boutonEdition.classList.add("filtres-boutton")
-}
+
 
 // boutonEdition.appendChild(portFolio)
 
 // afficher mode édition 
 
+let popupBackground = document.querySelector(".popupBackground")
+let cross = document.querySelector(".cross")
+const popup = document.querySelector(".popup")
+
 function afficherPopup() {
-    let popupBackground = document.querySelector(".popupBackground")
     // La popup est masquée par défaut (display:none), ajouter la classe "active"
     // va changer son display et la rendre visible. 
     popupBackground.classList.add("active")
 }
 
 /**
- * Cette fonction cache la popup pour partager son score. 
+ * Cette fonction cache la popup pour éditer. 
  */
 function cacherPopup() {
-    let popupBackground = document.querySelector(".popupBackground")
     // La popup est masquée par défaut (display:none), supprimer la classe "active"
     // va rétablir cet affichage par défaut. 
     popupBackground.classList.remove("active")
@@ -144,22 +145,98 @@ function cacherPopup() {
  * l'affichage de la popup. 
  */
 function initAddEventListenerPopup() {
-    // On écoute le click sur le bouton "partager"
+    // On écoute le click sur le bouton "Editer"
     btnEdit = document.querySelector(".boutonEdition")
-    let popupBackground = document.querySelector(".popupBackground")
     btnEdit.addEventListener("click", () => {
-        // Quand on a cliqué sur le bouton partagé, on affiche la popup
+        // Quand on a cliqué sur le bouton Editer, on affiche la popup
         afficherPopup()
+        modeEditionPhotos()
     })
 
-    // On écoute le click sur la div "popupBackground"
-    popupBackground.addEventListener("click", (event) => {
-        // Si on a cliqué précisément sur la popupBackground 
-        // (et pas un autre élément qui se trouve dedant)
-        if (event.target === popupBackground) {
-            // Alors on cache la popup
-            cacherPopup()
-        }
+    // On écoute le click sur la croix
+    cross.addEventListener("click", () => {
+        cacherPopup()
     })
 }
+
 initAddEventListenerPopup()
+
+// on génére les photos dans le mode edit 
+
+const galleryEdit = document.querySelector(".popup-galerie")
+const popupTitre = document.querySelector(".popup-titre")
+
+
+
+function modeEditionPhotos() {
+    galleryEdit.innerHTML = ""
+    for (let i = 0; i < projets.length; i++) {
+
+        const photos = projets[i]
+
+        const galleryEditPhotos = document.createElement("figure")
+        const galleryPhotos = document.createElement("img")
+
+        const photosDelete = document.createElement("button")
+        photosDelete.classList.add("boutton-effacer")
+        photosDelete.innerText = "supprimer"
+
+
+        galleryPhotos.src = photos.imageUrl
+
+
+        galleryEdit.appendChild(galleryEditPhotos)
+        galleryEditPhotos.appendChild(galleryPhotos)
+        galleryEditPhotos.appendChild(photosDelete)
+        
+    }
+    popupTitre.innerText = "Galerie photos"
+    bouttonAddPhotos.classList.remove("disabled")
+   
+}
+
+const bouttonAddPhotos = document.createElement("button")
+    popup.appendChild(bouttonAddPhotos)
+    bouttonAddPhotos.classList.add("buttonAddPhotos")
+    bouttonAddPhotos.classList.add("boutonEdition")
+    bouttonAddPhotos.innerText = "Ajouter une photo"
+    
+
+
+    bouttonAddPhotos.addEventListener("click", () => {
+        
+        galleryEdit.innerHTML = ""
+        popupTitre.innerText = "Ajouter une photo"
+
+        const popupForm = document.createElement("form")
+        galleryEdit.appendChild(popupForm)
+        const labelImage = document.createElement("label"); // Créez un élément label
+        labelImage.setAttribute("for", "photoImage"); // Associez-le au champ d'entrée en utilisant l'attribut 'for'
+        labelImage.innerText = "Image"; // Texte du libellé
+        popupForm.appendChild(labelImage);
+
+
+        const photoImage = document.createElement("input")
+        popupForm.appendChild(photoImage)
+        photoImage.type = "file"
+        const labelTitre = document.createElement("label"); // Créez un élément label
+        labelTitre.setAttribute("for", "photoTitre"); // Associez-le au champ d'entrée en utilisant l'attribut 'for'
+        labelTitre.innerText = "Titre"; // Texte du libellé
+        popupForm.appendChild(labelTitre);
+        const photoTitre = document.createElement("input")
+        popupForm.appendChild(photoTitre)
+        photoTitre.type = "text"
+        const labelCategory = document.createElement("label"); // Créez un élément label
+        labelCategory.setAttribute("for", "photoCategory"); // Associez-le au champ d'entrée en utilisant l'attribut 'for'
+        labelCategory.innerText = "Catégorie"; // Texte du libellé
+        popupForm.appendChild(labelCategory);
+        const photoCategory = document.createElement("input")     
+        popupForm.appendChild(photoCategory)
+        photoCategory.type = "select"
+        const bouttonAddPhotosSubmit = document.createElement("button")
+        popupForm.appendChild(bouttonAddPhotosSubmit)
+        bouttonAddPhotosSubmit.classList.add("boutonEdition")
+        bouttonAddPhotosSubmit.innerText = "Valider Ajout"
+
+        bouttonAddPhotos.classList.add("disabled")
+    })
