@@ -162,7 +162,7 @@ section {
 	margin: 50px 0
 }
 
-h1 {
+.titleH1 {
 	display: flex;
 	flex-direction: column;
 	font-family: 'Syne';
@@ -171,14 +171,14 @@ h1 {
 	color: #B1663C
 }
 
-h1>span {
+.titleH1>span {
 	font-family: 'Work Sans';
 	font-size: 10px;
 	letter-spacing: 0.1em;
 	;
 }
 
-h2 {
+.subtitleH2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
@@ -263,11 +263,12 @@ a:hover {
 
 .bouttonEdit {
 	background-color: darkgrey;
-	color:white;
-	border-radius:25px;
-	width:100px;
-	height:30px;
+	color: white;
+	border-radius: 25px;
+	width: 100px;
+	height: 30px;
 }
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -348,12 +349,13 @@ footer nav ul {
 	height: 40px;
 	align-items: center;
 }
+
 .login {
 	width: 25%;
 	margin: auto;
 }
 
-.login{
+.login {
 	text-align: left;
 	margin-top: 30px;
 	display: flex;
@@ -372,88 +374,149 @@ footer nav ul {
 }
 
 /* bouton Edition style */
+.modeEdit {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 .boutonEdition {
 	background-color: #1D6154;
-	color:white;
-	border-radius:25px;
+	color: white;
+	border-radius: 25px;
 	min-width: 120px;
-	height:30px;
+	height: 30px;
+	border: #1D6154 1px solid;
+	padding: 7px 25px 7px 25px;
+	margin: 2px;
+	font-family: 'Syne';
+	margin-top:100px;
+	cursor:pointer;
+}
+.boutonEditionMenu {
+	background-color: #1D6154;
+	color: white;
+	border-radius: 25px;
+	min-width: 120px;
+	height: 30px;
 	border: #1D6154 1px solid;
 	padding: 7px 25px 7px 25px;
 	margin: 2px;
 	font-family: 'Syne';
 }
 
+.headerEdit {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 45px;
+	background-color: black;
+	color: white;
+}
+
 /*Test popup*/
 
 .popupBackground {
-    display: none;
-    position: fixed;
-    height: 50vh;
-    width: 120vw;
-    
+	display: none;
+	position: fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.7);
+	z-index:10
+
 }
+
 .popup {
-	display:none;
-    position: absolute;
-    top: -60%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    flex-wrap: wrap;
-    display:flex;
+	display: none;
+	position: absolute;
+	transform: translate(0%, -70%);
+	flex-wrap: wrap;
+	top:600px;
+	left:30%;
+	display: flex;
 	flex-direction: column;
-    width:800px;
-    padding: 20px;
-    color:black;
-    font-size: 17px;
-    background-color:#FFFEF8;
-    border-radius: 30px;
-    z-index: 1;
+	width: 40%;
+	padding: 20px;
+	color: black;
+	font-size: 17px;
+	background-color: #FFFEF8;
+	border-radius: 30px;
+	z-index: 20;
 	border: #1D6154 2px solid;
 }
-.popup-titre{
-	text-align: center;
-	margin-bottom:30px;
-}
+
 .active {
-    display: flex !important;
+	display: flex !important;
 }
 
 /* Eléments de formulaire */
 
-.popup-galerie img{
-width:100px;
-position:relative;
+.popup-galerie img {
+	width: 100px;
+	position: relative;
 }
+
 .popup-galerie {
-	display:flex;
+	display: flex;
 	flex-wrap: wrap;
-	gap:30px;
+	gap: 30px;
 }
-.popup-galerie figure{
-	display:flex;
+
+.popup-galerie figure {
+	display: flex;
 }
+
 .buttonAddPhotos {
-	margin-top:30px;
+	margin-top: 30px;
+}
+
+.closePopup {
+	height: 30px;
+	display: flex;
+}
+
+.popup-titre {
+	position:absolute;
+	padding-top: 2px;
+	right: 40%;
 }
 .cross {
-	width:20px;
+	position: absolute;
+	right: 2%;
+	justify-content: right;
+	cursor:pointer;
+}
+.arrowLeft {
+	cursor:pointer;
 }
 .boutton-effacer {
-	position:absolute;
+	position: absolute;
 	background-color: #1D6154;
-	color:white;
-	border:#1D6154 1px solid;
+	color: white;
+	border: #1D6154 1px solid;
 }
+.Trash {
+	cursor:pointer;
+}
+
 .disabled {
-	display:none;
+	display: none;
 }
-.popup form{
-	font-size:25px;
-	display:flex;
+
+.popup form {
+	font-size: 25px;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
-	
+
+}
+.lostPassword {
+	padding-left:70px;
 }

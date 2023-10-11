@@ -18,11 +18,12 @@
 
 <body>
 	<header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<div class="headerEdit"><i class="fa-solid fa-pen-to-square"></i> Mode édition</div>
+		<h1 class="titleH1">Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
 
-			<a href="#portfolio">projets</a>
-			<a href="#contact">contact</a>
+			<a class="logouttest" href="#portfolio">projets</a>
+			<a class="logintest" href="#contact">contact</a>
 			<a href="login.html" class="login-boutton">login</a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 
@@ -34,7 +35,7 @@
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
 			<article>
-				<h2>Designer d'espace</h2>
+				<h2  class="subtitleH2">Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
 				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
@@ -45,18 +46,24 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<button class="boutonEdition">Editer</button>
+			
 			<div class="popupBackground">
 				<div class="popup">
-					<span class=cross><i class="fa-solid fa-xmark"></i></span>
+					<div class="closePopup">
+					<span class="arrowLeft"><i class="fa-solid fa-arrow-left"></i></span>
 					<h3 class="popup-titre"></h3>
+					<span class=cross><i class="fa-solid fa-xmark"></i></span>
+					</div>
+					
 					<div class="popup-galerie">
 						
 					</div>
 				</div>
 			</div>
-
-			<h2>Mes Projets</h2>
+			<div class="modeEdit">
+			<h2 class="subtitleH2">Mes Projets</h2>
+			<button class="boutonEdition"><i class="fa-solid fa-pen-to-square"></i> Modifier</button>
+			</div>
 			<div class="filtres">
 				<button id="tous" class="filtres-boutton">Tous</button>
 
@@ -66,7 +73,7 @@
 			</div>
 		</section>
 		<section id="contact">
-			<h2>Contact</h2>
+			<h2 class="subtitleH2">Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
 			<form action="#" method="post">
 				<label for="name">Nom</label>
@@ -89,5 +96,6 @@
 	</footer>
 </body>
 <script src="assets/script.js"></script>
+<script src="assets/login.js"></script>
 
 </html>
