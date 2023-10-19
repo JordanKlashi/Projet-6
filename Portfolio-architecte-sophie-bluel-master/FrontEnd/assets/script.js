@@ -1,14 +1,13 @@
 
 const apiWorks = "http://localhost:5678/api/works";
 const apiCategory = "http://localhost:5678/api/categories";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4"
 
 let projets = [];
 let category = 0;
 let categoryData = [];
-let tryDelete = [];
 let categData;
 let categDataName;
+
 
 
 
@@ -25,7 +24,7 @@ fetch(apiWorks)
         projets = data;
         createButtons();
         mesProjets();
-        modeEditionPhotos();
+        modeEditionPhotos()       
     })
     .catch(error => {
         console.error("Une erreur s'est produite lors de la récupération des données", error);
@@ -42,57 +41,10 @@ fetch(apiCategory)
     })
     .then(data => {
         categData = data
-        })
+    })
     .catch(error => {
         console.error("Une erreur s'est produite lors de la récupération des données", error);
     });
-
-// on génère l'API Delete photos
-
-function deletePhoto(photoId) {
-    fetch(`http://localhost:5678/api/works/${photoId}`, {
-        method: "DELETE",
-        body: null,
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json; charset=UTF-8",
-        }
-        
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Erreur HTTP! statut: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((json) => {
-            // La photo a été supprimée avec succès
-            deletePhoto()
-        })
-        .catch((error) => {
-            console.error("Une erreur s'est produite lors de la suppression de la photo", error);
-        });
-}
-
-// on récupére l'API Post photos
-
-function postPhoto() {
-    fetch(`http://localhost:5678/api/works/`), {
-        method: "POST",
-        body : {
-            "id": 0,
-            "title": "string",
-            "imageUrl": "string",
-            "categoryId": "string",
-            "userId": 1
-          },
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "application/json; charset=utf-8",
-        }
-        
-    }
-}
 
 // on génère les projets
 const gallery = document.querySelector(".gallery");
@@ -189,7 +141,7 @@ function initAddEventListenerPopup() {
         modeEditionPhotos()
         arrowLeft.classList.add("disabled")
     })
-    
+
 }
 initAddEventListenerPopup();
 
@@ -204,16 +156,16 @@ function modeEditionPhotos() {
     for (let i = 0; i < projets.length; i++) {
 
         const photos = projets[i]
-
+photos.id
         const galleryEditPhotos = document.createElement("figure");
         const galleryPhotos = document.createElement("img");
 
         const buttonDeletePhotos = document.createElement("button");
         buttonDeletePhotos.classList.add("boutton-effacer");
-        
+
 
         const iconTrash = document.createElement("i");
-        iconTrash.classList.add("fa-solid", "fa-trash"); // Ajoutez les classes Font Awesome
+        iconTrash.classList.add("fa", "fa-trash"); // Ajoutez les classes Font Awesome
 
         // Ajoutez l'icône au bouton
         buttonDeletePhotos.appendChild(iconTrash);
@@ -222,7 +174,33 @@ function modeEditionPhotos() {
         buttonDeletePhotos.setAttribute("data-id", photos.id); // Stockez l'ID de la photo comme attribut de données
         buttonDeletePhotos.addEventListener("click", () => {
             console.log(`${photos.id}`)
-            
+
+            // API supprimer photo 
+            const info = JSON.parse(localStorage.getItem("info"))
+            if (info) {
+                const { userId, token } = info;
+
+                fetch(`http://localhost:5678/api/works/${photos.id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log("Suppression réussie. ")
+                        } else {
+                            console.error("Echec de la suppresion")
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur lors de la suppresion:", error)
+                    })
+            } else {
+                console.error("Aucune information d\'autorisation trouvée dans le localStorage")
+            }
+
         });
 
         galleryPhotos.src = photos.imageUrl;
@@ -231,6 +209,7 @@ function modeEditionPhotos() {
         galleryEditPhotos.appendChild(galleryPhotos);
         galleryEditPhotos.appendChild(buttonDeletePhotos);
     }
+
     popupTitre.innerText = "supprimer des photos";
     bouttonAddPhotos.classList.remove("disabled");
 }
@@ -253,52 +232,112 @@ function ajouterPhotos(categData) {
 
     const popupForm = document.createElement("form")
     galleryEdit.appendChild(popupForm)
-    const labelImage = document.createElement("label"); // Créez un élément label
-    labelImage.setAttribute("for", "photoImage"); // Associez-le au champ d'entrée en utilisant l'attribut 'for'
-    labelImage.innerText = "Image"; // Texte du libellé
+
+    const labelImage = document.createElement("label");
+    labelImage.setAttribute("for", "photoImage");
+    labelImage.innerText = "Image";
     popupForm.appendChild(labelImage);
 
-
     const photoImage = document.createElement("input")
-    popupForm.appendChild(photoImage)
     photoImage.type = "file"
-    
-    const labelTitre = document.createElement("label"); // Créez un élément label
-    labelTitre.setAttribute("for", "photoTitre"); // Associez-le au champ d'entrée en utilisant l'attribut 'for'
-    labelTitre.innerText = "Titre"; // Texte du libellé
+    photoImage.id = "photoImage"; // Ajout de l'ID pour l'attribut "for" du label
+    popupForm.appendChild(photoImage);
+
+    const labelTitre = document.createElement("label");
+    labelTitre.setAttribute("for", "photoTitre");
+    labelTitre.innerText = "Titre";
     popupForm.appendChild(labelTitre);
-    
+
     const photoTitre = document.createElement("input")
-    popupForm.appendChild(photoTitre)
     photoTitre.type = "text"
-    
-    const labelCategory = document.createElement("label"); // Créez un élément label
-    labelCategory.setAttribute("for", "photoCategory"); // Associez-le au champ d'entrée en utilisant l'attribut 'for'
-    labelCategory.innerText = "Catégorie"; // Texte du libellé
+    photoTitre.id = "photoTitre";
+    popupForm.appendChild(photoTitre);
+
+    const labelCategory = document.createElement("label");
+    labelCategory.setAttribute("for", "photoCategory");
+    labelCategory.innerText = "Catégorie";
     popupForm.appendChild(labelCategory);
-    
-    const selectCategory = document.createElement("select"); // Créez un élément select
-    selectCategory.name = "photoCategory"; // Nommez-le
+
+    const selectCategory = document.createElement("select");
+    selectCategory.name = "photoCategory";
+    selectCategory.id = "photoCategory";
     popupForm.appendChild(selectCategory);
 
-    for (let i = 0 ; i < categData.length ; i++) {
-        const option = document.createElement("option"); 
-        option.value = categData[i].id; 
-        option.innerText = categData[i].name; 
-        selectCategory.appendChild(option); 
+    const optionNull = document.createElement("option")
+    selectCategory.appendChild(optionNull)
+
+    for (let i = 0; i < categData.length; i++) {
+        const option = document.createElement("option");
+        option.value = categData[i].id;
+        option.innerText = categData[i].name;
+        selectCategory.appendChild(option);
     }
 
     const bouttonAddPhotosSubmit = document.createElement("button")
     popupForm.appendChild(bouttonAddPhotosSubmit)
     bouttonAddPhotosSubmit.classList.add("Trash")
     bouttonAddPhotosSubmit.classList.add("boutonEdition")
-
     bouttonAddPhotosSubmit.innerText = "Valider"
 
     bouttonAddPhotosSubmit.addEventListener("click", (event) => {
-        event.preventDefault()
-        
-    })
+        event.preventDefault();
+        // for (let i = 0 ; i < projetsId ; i++){
+        //     photoId = [i]
+        // }
+        // console.log(photoId)
+        // Vérification des champs obligatoires
+        if (
+            photoTitre.value.trim() === "" ||
+            photoImage.files.length === 0 ||
+            selectCategory.value === ""
+            
+        ) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+        } else {
+            const info = JSON.parse(localStorage.getItem("info"));
+            if (info) {
+                const { userId, token } = info;
+
+                const formData = new FormData();
+                formData.append("title", photoTitre.value);
+                formData.append("imageUrl", photoImage.files[0]);
+                formData.append("categoryId", selectCategory.value);
+                formData.append("userId", userId);
+
+                fetch(`http://localhost:5678/api/works`, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "content-type":"application/json",
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('La requête a échoué.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // "data" contient le contenu de la réponse JSON
+                    // Vous pouvez maintenant travailler avec les données
+                    photo.push(data); // Ajoutez la nouvelle photo à la liste
+                    localStorage.setItem("photos", JSON.stringify(data)); // Enregistrez la liste mise à jour
+                    console.log("succès")
+
+                    mesProjets();
+                    console.log("succès")
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+                console.log(photoImage.files)
+                console.log(photoTitre.value)
+                console.log(selectCategory.value)
+               
+            }
+        }
+    });
 
     bouttonAddPhotos.classList.add("disabled")
 }
@@ -306,29 +345,5 @@ function ajouterPhotos(categData) {
 
 bouttonAddPhotos.addEventListener("click", () => {
     ajouterPhotos(categData)
-})
-
-
-
-
-
-
-// action a modifier quand actualiser le login 
-// pris contact pour effectuer le test
-const headerEdit = document.querySelector(".headerEdit")
-
-const loginTest = document.querySelector(".logintest")
-loginTest.addEventListener("click", () => {
-btnEdit.classList.add("disabled")
-headerEdit.classList.add("disabled")
-})
-
-// même chose pour quand on se connecte
-// permet de protéger la possibilités d'Edit
-
-const logoutTest = document.querySelector(".logouttest")
-logoutTest.addEventListener("click", () => {
-    btnEdit.classList.remove("disabled")
-    headerEdit.classList.remove("disabled")
 })
 

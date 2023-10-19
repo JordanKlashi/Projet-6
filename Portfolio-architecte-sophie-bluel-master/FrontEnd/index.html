@@ -7,10 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+		integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 
@@ -21,10 +22,12 @@
 		<div class="headerEdit"><i class="fa-solid fa-pen-to-square"></i> Mode édition</div>
 		<h1 class="titleH1">Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
+			<div class="nav">
+				<a href="#portfolio">projets</a>
+				<a href="#contact">contact</a>
+				<a href="login.html" id="Login" class="login-boutton">login</a>
+			</div>
 
-			<a class="logouttest" href="#portfolio">projets</a>
-			<a class="logintest" href="#contact">contact</a>
-			<a href="login.html" class="login-boutton">login</a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 
 		</nav>
@@ -35,7 +38,7 @@
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
 			<article>
-				<h2  class="subtitleH2">Designer d'espace</h2>
+				<h2 class="subtitleH2">Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
 				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
@@ -46,23 +49,23 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			
+
 			<div class="popupBackground">
 				<div class="popup">
 					<div class="closePopup">
-					<span class="arrowLeft"><i class="fa-solid fa-arrow-left"></i></span>
-					<h3 class="popup-titre"></h3>
-					<span class=cross><i class="fa-solid fa-xmark"></i></span>
+						<span class="arrowLeft"><i class="fa-solid fa-arrow-left"></i></span>
+						<h3 class="popup-titre"></h3>
+						<span class=cross><i class="fa-solid fa-xmark"></i></span>
 					</div>
-					
+
 					<div class="popup-galerie">
-						
+
 					</div>
 				</div>
 			</div>
 			<div class="modeEdit">
-			<h2 class="subtitleH2">Mes Projets</h2>
-			<button class="boutonEdition"><i class="fa-solid fa-pen-to-square"></i> Modifier</button>
+				<h2 class="subtitleH2">Mes Projets</h2>
+				<button class="boutonEdition"><i class="fa-solid fa-pen-to-square"></i> Modifier</button>
 			</div>
 			<div class="filtres">
 				<button id="tous" class="filtres-boutton">Tous</button>
@@ -96,6 +99,6 @@
 	</footer>
 </body>
 <script src="assets/script.js"></script>
-<script src="assets/login.js"></script>
+<script src="assets/admin.js"></script>
 
 </html>
