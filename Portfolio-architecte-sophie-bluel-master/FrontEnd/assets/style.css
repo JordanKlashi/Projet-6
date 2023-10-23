@@ -256,7 +256,7 @@ a:hover {
 	font-family: 'Syne';
 }
 
-.filtres-boutton:active {
+.filtres-boutton_selected {
 	background-color: #1D6154;
 	color: white;
 }
@@ -350,12 +350,13 @@ footer nav ul {
 	align-items: center;
 }
 
-.login {
-	width: 25%;
-	margin: auto;
+nav img {
+	width: 10%;
 }
 
 .login {
+	width: 25%;
+	margin: auto;
 	text-align: left;
 	margin-top: 30px;
 	display: flex;
@@ -390,9 +391,10 @@ footer nav ul {
 	padding: 7px 25px 7px 25px;
 	margin: 2px;
 	font-family: 'Syne';
-	margin-top:100px;
-	cursor:pointer;
+	margin-top: 100px;
+	cursor: pointer;
 }
+
 .boutonEditionMenu {
 	background-color: #1D6154;
 	color: white;
@@ -403,6 +405,7 @@ footer nav ul {
 	padding: 7px 25px 7px 25px;
 	margin: 2px;
 	font-family: 'Syne';
+	cursor: pointer;
 }
 
 .headerEdit {
@@ -421,27 +424,28 @@ footer nav ul {
 /*Test popup*/
 
 .popupBackground {
+	
 	display: none;
 	position: fixed;
-	top:0;
-	left:0;
-	height:100%;
+	top: 0;
+	left: 0;
+	height: 100%;
 	width: 100%;
-	background-color: rgba(0,0,0,0.7);
-	z-index:10
-
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 10
 }
 
 .popup {
 	display: none;
 	position: absolute;
-	transform: translate(0%, -70%);
 	flex-wrap: wrap;
-	top:600px;
-	left:30%;
+	left: 20%;
+	right:20%;
 	display: flex;
 	flex-direction: column;
-	width: 40%;
+	
+	min-width: 340px;
+	min-height:300px;
 	padding: 20px;
 	color: black;
 	font-size: 17px;
@@ -453,6 +457,7 @@ footer nav ul {
 
 .active {
 	display: flex !important;
+	align-items: center;
 }
 
 /* Eléments de formulaire */
@@ -460,6 +465,7 @@ footer nav ul {
 .popup-galerie img {
 	width: 100px;
 	position: relative;
+	object-fit: cover;
 }
 
 .popup-galerie {
@@ -482,27 +488,31 @@ footer nav ul {
 }
 
 .popup-titre {
-	position:absolute;
+	position: absolute;
 	padding-top: 2px;
 	right: 40%;
 }
+
 .cross {
 	position: absolute;
 	right: 2%;
 	justify-content: right;
-	cursor:pointer;
+	cursor: pointer;
 }
+
 .arrowLeft {
-	cursor:pointer;
+	cursor: pointer;
 }
+
 .boutton-effacer {
 	position: absolute;
 	background-color: #1D6154;
 	color: white;
 	border: #1D6154 1px solid;
 }
+
 .Trash {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .disabled {
@@ -517,6 +527,8 @@ footer nav ul {
 	text-align: center;
 
 }
+
 .lostPassword {
-	padding-left:70px;
+	padding-left: 70px;
 }
+
