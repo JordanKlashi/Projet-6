@@ -380,7 +380,18 @@ nav img {
 	align-items: center;
 	justify-content: center;
 }
-
+.boutonEditionDisabled {
+	background-color: #a7a7a7;
+	color: white;
+	border-radius: 25px;
+	min-width: 120px;
+	height: 30px;
+	border: #A7A7A7 1px solid;
+	padding: 7px 25px 7px 25px;
+	margin: 2px;
+	font-family: 'Syne';
+	margin-top: 25px;
+}
 .boutonEdition {
 	background-color: #1D6154;
 	color: white;
@@ -391,7 +402,7 @@ nav img {
 	padding: 7px 25px 7px 25px;
 	margin: 2px;
 	font-family: 'Syne';
-	margin-top: 100px;
+	margin-top: 25px;
 	cursor: pointer;
 }
 
@@ -432,18 +443,17 @@ nav img {
 	height: 100%;
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 10
+	z-index: 10;
 }
 
 .popup {
 	display: none;
 	position: absolute;
 	flex-wrap: wrap;
-	left: 20%;
+	left: 15%;
 	right:20%;
 	display: flex;
 	flex-direction: column;
-	
 	min-width: 340px;
 	min-height:300px;
 	padding: 20px;
@@ -453,6 +463,7 @@ nav img {
 	border-radius: 30px;
 	z-index: 20;
 	border: #1D6154 2px solid;
+	
 }
 
 .active {
@@ -462,7 +473,7 @@ nav img {
 
 /* Eléments de formulaire */
 
-.popup-galerie img {
+.deletImg {
 	width: 100px;
 	position: relative;
 	object-fit: cover;
@@ -471,7 +482,8 @@ nav img {
 .popup-galerie {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 30px;
+	justify-content: center;
+	gap:30px;
 }
 
 .popup-galerie figure {
@@ -524,11 +536,41 @@ nav img {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	text-align: center;
+	gap:15px;
+}
 
+
+.inputStyle {
+	width:300px;
+	height: 50px;
+    font-size: 15px;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+select {
+	width:300px;
+	height: 50px;
+    font-size: 15px;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.addimgStyle {
+	min-width: none;
+	max-width:300px;
+	min-height:none;
+	max-height:200px;
+	object-fit: cover;
 }
 
 .lostPassword {
 	padding-left: 70px;
 }
+.popup-galerie form{
+	padding:30px;
+}
 
+.underline {
+	margin-top:30px;
+	border:1px solid #a7a7a7;
+}
