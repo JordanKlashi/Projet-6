@@ -41,11 +41,10 @@ function setModal() {
         
     }
     
-
+    
     popupTitre.innerText = "supprimer des photos";
     bouttonAddPhotos.classList.remove("disabled");
 
-    
 }
 
 const deletWork = (id) => {
@@ -84,16 +83,16 @@ const deletWork = (id) => {
 }
 // on rajoute eventListener pour le clic sur le bouton 
 // on crée le bouton pour ajouter les photos 
-    const line = document.createElement("div");
-    popup.appendChild(line);
-    line.classList.add("underline")
+const line = document.createElement("div");
+popup.appendChild(line);
+line.classList.add("underline")
 
 const bouttonAddPhotos = document.createElement("button");
 popup.appendChild(bouttonAddPhotos);
 bouttonAddPhotos.classList.add("buttonAddPhotos");
 bouttonAddPhotos.classList.add("boutonEdition");
 bouttonAddPhotos.innerText = "Ajouter une photo";
-
+const bouttonAddPhotosSubmit = []
 //on génére la page d'ajout des photos
 
 function ajouterPhotos() {
@@ -105,20 +104,24 @@ function ajouterPhotos() {
     const popupForm = document.createElement("form")
     ModalGallery.appendChild(popupForm)
 
+
     const labelImage = document.createElement("label");
     labelImage.setAttribute("for", "photoImage");
-    labelImage.innerText = "Image";
     popupForm.appendChild(labelImage);
+    labelImage.classList.add("divlabimg")
+
+    const divLabelImage = document.createElement("div")
+    labelImage.appendChild(divLabelImage)
 
     const photoPreview = document.createElement("img")
     photoPreview.classList.add("addimgStyle")
     photoPreview.src = "assets/images/sansimage.jpg"
-    
-    popupForm.appendChild(photoPreview)
+    labelImage.appendChild(photoPreview)
 
     const photoImage = document.createElement("input")
     photoImage.type = "file"
     photoImage.id = "photoImage"; // Ajout de l'ID pour l'attribut "for" du label
+    photoImage.style = "display:none"
     popupForm.appendChild(photoImage);
     
     photoImage.addEventListener("change", () => {
@@ -152,7 +155,7 @@ function ajouterPhotos() {
 
     const optionNull = document.createElement("option")
     selectCategory.appendChild(optionNull)
-    optionNull.innerText = "Selectionner une catégorie"
+    optionNull.innerText = "*Veuillez Selectionner une catégorie*"
     
     for (let i = 0; i < categData.length; i++) {
         const option = document.createElement("option");
@@ -177,13 +180,13 @@ function ajouterPhotos() {
         if (
             photoTitre.value.trim() === "" ||
             photoImage.files.length === 0 ||
-            selectCategory.value === "Selectionner une catégorie"
+            selectCategory.value === "*Veuillez Selectionner une catégorie*"
 
         ) {
             alert("Veuillez remplir tous les champs obligatoires.");
         } else {
             
-            bouttonAddPhotosSubmit.classList.add("boutonEdition")
+            
             const info = JSON.parse(localStorage.getItem("info"));
             if (info) {
                 const { userId, token } = info;
@@ -222,9 +225,8 @@ function ajouterPhotos() {
                     .catch(error => {
                         console.error(error);
                     });
-                console.log(photoImage.files)
-                console.log(photoTitre.value)
-                console.log(selectCategory.value)
+                    arrowLeft.classList.add("disabled")
+                    line.classList.add("underline")
 
             }
         }
@@ -237,4 +239,20 @@ function ajouterPhotos() {
 bouttonAddPhotos.addEventListener("click", () => {
     ajouterPhotos()
 })
+
+function checkInputs() {
+
+        bouttonAddPhotosSubmit.classList.remove("boutonEditionDisabled"); // Remplacez "grey" par "boutonEditionDisabled"
+        bouttonAddPhotosSubmit.classList.add("boutonEdition"); // Remplacez "green" par "boutonEdition"
+    }
+
+photoImage.addEventListener("change", () => {
+    checkInputs()
+});
+photoTitre.addEventListener("input", () => {
+    checkInputs()
+});
+selectCategory.addEventListener("change", () => {
+    checkInputs()
+});
 

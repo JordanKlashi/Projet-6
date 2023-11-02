@@ -405,6 +405,9 @@ nav img {
 	margin-top: 25px;
 	cursor: pointer;
 }
+.btndit {
+	margin-top:100px;
+}
 
 .boutonEditionMenu {
 	background-color: #1D6154;
@@ -463,7 +466,8 @@ nav img {
 	border-radius: 30px;
 	z-index: 20;
 	border: #1D6154 2px solid;
-	
+	align-items: center;
+	text-align: center;
 }
 
 .active {
@@ -474,7 +478,7 @@ nav img {
 /* Eléments de formulaire */
 
 .deletImg {
-	width: 100px;
+	width: 50px;
 	position: relative;
 	object-fit: cover;
 }
@@ -485,13 +489,16 @@ nav img {
 	justify-content: center;
 	gap:30px;
 }
+.popup-galerie label{
+	font-size: 19px;
+}
 
 .popup-galerie figure {
 	display: flex;
 }
 
 .buttonAddPhotos {
-	margin-top: 30px;
+	width:300px;
 }
 
 .closePopup {
@@ -514,6 +521,8 @@ nav img {
 
 .arrowLeft {
 	cursor: pointer;
+	position:absolute;
+	left:2%;
 }
 
 .boutton-effacer {
@@ -557,10 +566,11 @@ select {
 }
 .addimgStyle {
 	min-width: none;
-	max-width:300px;
-	min-height:none;
-	max-height:200px;
+	max-width:100px;
+	align-items: center;
 	object-fit: cover;
+	max-height: 130px;
+	
 }
 
 .lostPassword {
@@ -571,6 +581,13 @@ select {
 }
 
 .underline {
+	width:100%;
 	margin-top:30px;
 	border:1px solid #a7a7a7;
+}
+.divlabimg {
+	width:300px;
+	background: #E8F1F6;
+	max-height: 130px;
+	cursor:pointer;
 }

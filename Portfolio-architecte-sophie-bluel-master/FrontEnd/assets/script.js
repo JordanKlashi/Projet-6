@@ -89,8 +89,11 @@ function createButtons() {
         // Mettez à jour la classe du bouton "Tous"
         boutonTous.classList.add("filtres-boutton_selected");
     });
-    for (let i = 0; i < projets.length; i++) {
-        const categoryId = projets[i].categoryId;
+
+    const orderCatg = projets.sort((a,b) => a.categoryId - b.categoryId)
+
+    for (let i = 0; i < orderCatg.length; i++) {
+        const categoryId = orderCatg[i].categoryId;
         if (!uniqueCategoryIds.includes(categoryId)) {
             uniqueCategoryIds.push(categoryId);
         }
@@ -145,6 +148,7 @@ let arrowLeft = document.querySelector(".arrowLeft")
 function afficherPopup() {
     popupBackground.classList.add("active");
     arrowLeft.classList.add("disabled")
+
 
 }
 function cacherPopup() {
