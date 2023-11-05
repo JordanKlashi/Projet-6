@@ -6,7 +6,7 @@ const islogin = () => {
 
     //return false or true
 }
-// on récupére le bouton login
+// // on récupére le bouton login
 const loginBtn = document.getElementById("Login")
 const headerEdit = document.querySelector(".headerEdit")
 

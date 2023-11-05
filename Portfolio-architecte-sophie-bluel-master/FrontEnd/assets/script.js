@@ -90,7 +90,7 @@ function createButtons() {
         boutonTous.classList.add("filtres-boutton_selected");
     });
 
-    const orderCatg = projets.sort((a,b) => a.categoryId - b.categoryId)
+    const orderCatg = projets.sort((a, b) => a.categoryId - b.categoryId)
 
     for (let i = 0; i < orderCatg.length; i++) {
         const categoryId = orderCatg[i].categoryId;

@@ -380,6 +380,7 @@ nav img {
 	align-items: center;
 	justify-content: center;
 }
+
 .boutonEditionDisabled {
 	background-color: #a7a7a7;
 	color: white;
@@ -392,6 +393,7 @@ nav img {
 	font-family: 'Syne';
 	margin-top: 25px;
 }
+
 .boutonEdition {
 	background-color: #1D6154;
 	color: white;
@@ -405,8 +407,9 @@ nav img {
 	margin-top: 25px;
 	cursor: pointer;
 }
+
 .btndit {
-	margin-top:100px;
+	margin-top: 100px;
 }
 
 .boutonEditionMenu {
@@ -438,7 +441,7 @@ nav img {
 /*Test popup*/
 
 .popupBackground {
-	
+
 	display: none;
 	position: fixed;
 	top: 0;
@@ -454,11 +457,10 @@ nav img {
 	position: absolute;
 	flex-wrap: wrap;
 	left: 15%;
-	right:20%;
+	right: 20%;
 	display: flex;
 	flex-direction: column;
 	min-width: 340px;
-	min-height:300px;
 	padding: 20px;
 	color: black;
 	font-size: 17px;
@@ -487,9 +489,10 @@ nav img {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap:30px;
+	gap: 30px;
 }
-.popup-galerie label{
+
+.popup-galerie label {
 	font-size: 19px;
 }
 
@@ -498,18 +501,12 @@ nav img {
 }
 
 .buttonAddPhotos {
-	width:300px;
+	width: 300px;
 }
 
 .closePopup {
 	height: 30px;
 	display: flex;
-}
-
-.popup-titre {
-	position: absolute;
-	padding-top: 2px;
-	right: 40%;
 }
 
 .cross {
@@ -521,8 +518,8 @@ nav img {
 
 .arrowLeft {
 	cursor: pointer;
-	position:absolute;
-	left:2%;
+	position: absolute;
+	left: 2%;
 }
 
 .boutton-effacer {
@@ -545,49 +542,51 @@ nav img {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap:15px;
+	gap: 15px;
 }
 
 
 .inputStyle {
-	width:300px;
+	width: 300px;
 	height: 50px;
-    font-size: 15px;
-    border: none;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-size: 15px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 select {
-	width:300px;
+	width: 300px;
 	height: 50px;
-    font-size: 15px;
-    border: none;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-size: 15px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 .addimgStyle {
-	min-width: none;
-	max-width:100px;
+	max-width: 100px;
 	align-items: center;
 	object-fit: cover;
 	max-height: 130px;
-	
+
 }
 
 .lostPassword {
 	padding-left: 70px;
 }
-.popup-galerie form{
-	padding:30px;
+
+.popup-galerie form {
+	padding: 30px;
 }
 
 .underline {
-	width:100%;
-	margin-top:30px;
-	border:1px solid #a7a7a7;
+	width: 100%;
+	margin-top: 30px;
+	border: 1px solid #a7a7a7;
 }
+
 .divlabimg {
-	width:300px;
+	width: 300px;
 	background: #E8F1F6;
 	max-height: 130px;
-	cursor:pointer;
+	cursor: pointer;
 }

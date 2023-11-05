@@ -38,10 +38,10 @@ function setModal() {
         ModalGallery.appendChild(ModalGalleryPhotos);
         ModalGalleryPhotos.appendChild(galleryPhotos);
         ModalGalleryPhotos.appendChild(buttonDeletePhotos);
-        
+
     }
-    
-    
+
+
     popupTitre.innerText = "supprimer des photos";
     bouttonAddPhotos.classList.remove("disabled");
 
@@ -92,7 +92,6 @@ popup.appendChild(bouttonAddPhotos);
 bouttonAddPhotos.classList.add("buttonAddPhotos");
 bouttonAddPhotos.classList.add("boutonEdition");
 bouttonAddPhotos.innerText = "Ajouter une photo";
-const bouttonAddPhotosSubmit = []
 //on génére la page d'ajout des photos
 
 function ajouterPhotos() {
@@ -120,10 +119,15 @@ function ajouterPhotos() {
 
     const photoImage = document.createElement("input")
     photoImage.type = "file"
-    photoImage.id = "photoImage"; // Ajout de l'ID pour l'attribut "for" du label
+    photoImage.id = "photoImage";
     photoImage.style = "display:none"
     popupForm.appendChild(photoImage);
-    
+    photoImage.id = "photoImage"
+    photoImage.addEventListener("change", () => {
+        console.log("img")
+        checkInputs()
+    });
+
     photoImage.addEventListener("change", () => {
         if (photoImage.files.length > 0) {
             const selectedFile = photoImage.files[0];
@@ -142,6 +146,12 @@ function ajouterPhotos() {
     photoTitre.id = "photoTitre";
     photoTitre.classList.add("inputStyle")
     popupForm.appendChild(photoTitre);
+    photoTitre.id = "photoTitre"
+    photoTitre.addEventListener("input", () => {
+        console.log("titre")
+        checkInputs()
+    });
+
 
     const labelCategory = document.createElement("label");
     labelCategory.setAttribute("for", "photoCategory");
@@ -152,11 +162,16 @@ function ajouterPhotos() {
     selectCategory.name = "photoCategory";
     selectCategory.id = "photoCategory";
     popupForm.appendChild(selectCategory);
+    selectCategory.id = "selectCategory"
+    selectCategory.addEventListener("change", () => {
+        console.log("category")
+        checkInputs()
+    });
 
     const optionNull = document.createElement("option")
     selectCategory.appendChild(optionNull)
     optionNull.innerText = "*Veuillez Selectionner une catégorie*"
-    
+
     for (let i = 0; i < categData.length; i++) {
         const option = document.createElement("option");
         option.value = categData[i].id;
@@ -171,9 +186,10 @@ function ajouterPhotos() {
 
     const bouttonAddPhotosSubmit = document.createElement("button")
     popupForm.appendChild(bouttonAddPhotosSubmit)
-    bouttonAddPhotosSubmit.classList.add("Trash")
     bouttonAddPhotosSubmit.classList.add("boutonEditionDisabled")
     bouttonAddPhotosSubmit.innerText = "Valider"
+    bouttonAddPhotosSubmit.id = "bouttonAddPhotosSubmit"
+
 
     bouttonAddPhotosSubmit.addEventListener("click", (event) => {
         event.preventDefault();
@@ -185,8 +201,8 @@ function ajouterPhotos() {
         ) {
             alert("Veuillez remplir tous les champs obligatoires.");
         } else {
-            
-            
+
+
             const info = JSON.parse(localStorage.getItem("info"));
             if (info) {
                 const { userId, token } = info;
@@ -211,22 +227,13 @@ function ajouterPhotos() {
                         return response.json();
                     })
                     .then(data => {
-                        // "data" contient le contenu de la réponse JSON
-                        // Vous pouvez maintenant travailler avec les données
-                        // projets.push(data); // Ajoutez la nouvelle photo à la liste
-                        // localStorage.setItem("photos", JSON.stringify(data)); // Enregistrez la liste mise à jour
-                        // console.log("succès")
-
-                        // mesProjets();
-                        // console.log("succès")
                         getworks()
-
                     })
                     .catch(error => {
                         console.error(error);
                     });
-                    arrowLeft.classList.add("disabled")
-                    line.classList.add("underline")
+                arrowLeft.classList.add("disabled")
+                line.classList.add("underline")
 
             }
         }
@@ -242,17 +249,21 @@ bouttonAddPhotos.addEventListener("click", () => {
 
 function checkInputs() {
 
+    if (
+        (photoTitre.value.trim() === "" ||
+            photoImage.files.length === 0 ||
+            selectCategory.value === "*Veuillez Selectionner une catégorie*")
+
+    ) {
+        bouttonAddPhotosSubmit.disabled = true
+        bouttonAddPhotosSubmit.classList.add("boutonEditionDisabled"); // Remplacez "grey" par "boutonEditionDisabled"
+        bouttonAddPhotosSubmit.classList.remove("boutonEdition"); // Remplacez "green" par "boutonEdition"
+    } else {
+        bouttonAddPhotosSubmit.disabled = false
         bouttonAddPhotosSubmit.classList.remove("boutonEditionDisabled"); // Remplacez "grey" par "boutonEditionDisabled"
         bouttonAddPhotosSubmit.classList.add("boutonEdition"); // Remplacez "green" par "boutonEdition"
     }
+}
 
-photoImage.addEventListener("change", () => {
-    checkInputs()
-});
-photoTitre.addEventListener("input", () => {
-    checkInputs()
-});
-selectCategory.addEventListener("change", () => {
-    checkInputs()
-});
+
 
