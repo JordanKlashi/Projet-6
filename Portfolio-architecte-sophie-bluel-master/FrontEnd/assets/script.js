@@ -161,6 +161,11 @@ function initAddEventListenerPopup() {
         afficherPopup();
         setModal();
     });
+    popupBackground.addEventListener("click", (event) => {
+        if (event.target === popupBackground) {
+            cacherPopup()
+        }
+    })
     cross.addEventListener("click", () => {
         cacherPopup();
     });
